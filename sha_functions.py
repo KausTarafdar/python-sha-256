@@ -4,6 +4,7 @@ Following are the sha_functions required during the SHA256 encoding process.
 
 
 """PRIMITIVE FUNCTIONS :-"""
+"""----------------------------------------------------------------------------------------------------------------------------------------"""
 """
 {*} Bit Rotation : Rotates the bits in the binary string. The w value determines how many times the bits are rotated
 """

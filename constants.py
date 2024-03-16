@@ -1,6 +1,6 @@
 """
 Some constants for usage in the registers. They are hexadecimal forms of the cube root of\
-prime numbers. Used to add controlled randomness to the algorithm
+prime numbers. Used to add controlled randomness to the algorithm.
 """
 
 def H(num):

@@ -1,9 +1,13 @@
 """
 This file incorporartes the preprocessing step functions of algorithm. 
 Contents:
-1. message_binary() :
-2. pad() :
-3. blocks() :
+1. message_binary() : The function takes the ascii input and converts into binary format 
+for the first step of the algorithm.
+2. pad() : The function takes the binary string and pads it with 0s to 512 bits. If the 
+binary string is more the 512 bit, the message is up-ed to the next multiple of 512.
+The last 64 bits encode the length of message in the message block.
+3. blocks() : The encoded message is divided into blocks of 512 and put into the message
+scheduling.
 """
 
 

@@ -2,6 +2,11 @@ from constants import *
 from sha_functions import *
 from preprocessing import *
 
+"""
+A message is 32 bits long.
+The messages schedule is 16 messages long. However the message schedule needs to be 64 messages long.
+Therefore new messages are generated using previous bits, to get it upto 64 bits.
+"""
 def msgSchedule(msgBlock):
     n = 32
     print("CHUNKS : ")

@@ -19,13 +19,13 @@ hashValue = input("Enter what data you want to hash: ")
 STEP 1: PREPARING THE DATA FOR HASHING
 
 The message is turned into binary strings and their sizes are padded to 512 bits for
-the hashing process
+the hashing process.
 
 The message tends to be at 64 bits shorter than 512 as the last 64 bits are reserved for
-the length of the messaage to be encoded in binary and added to the end of the binary  
+the length of the messaage to be encoded in binary and added to the end of the binary.  
 
 For more than one block of 512 bits, the data is taken to the next multiple of 512 and 
-broken into message blocks
+broken into message blocks.
 '''
 
 rawData = message_binary(hashValue)
@@ -37,9 +37,9 @@ messageBlocks = blocks(paddedData)
 """ 
 STEP 2: MESSAGE SCHEDULE GENERATION
 
-A message block is taken and then is divided into 16 bytes of 32 bits. The total
-bytes in a message schedule are 64, so we create the 48 remaining bytes with the formula
-next byte = σ1(t-2) + (t-7) + σ0(t-15) + (t-16)  ; where t is no. of bytes
+A message block is taken and then is divided into 16 messages of 32 bits. The total
+messages in a message schedule is 64, so we create the 48 remaining bytes with the formula
+next message = σ1(t-2) + (t-7) + σ0(t-15) + (t-16); where t is index of message.
 """
 
 for block in messageBlocks:
@@ -48,8 +48,9 @@ for block in messageBlocks:
     """
     STEP 3: COMPRESSION OF DATA
 
-    The message schedule is then compressed with various rotation functions onto some variables called the 
-    state registers for every single message block and finally taken as hexadecimal values and concatenated
+    The message schedule is then compressed with various rotation functions onto some variables 
+    called the state registers for every single message block and finally taken as hexadecimal 
+    values and concatenated.
     """
     compressedValues = compression(schedule)
     h0 = compressedValues[0]
@@ -65,8 +66,8 @@ for block in messageBlocks:
 """
 STEP 4: MAKING THE HEXDIGEST
 
-The values of state registers are taken and converted to hexadecimal strings. Then they are concatenated
-to give us the final hex digest
+The values of state registers are taken and converted to hexadecimal strings. Then they are 
+concatenated to give us the final hex digest.
 """
 hexdigest = ""
 for value in compressedValues:

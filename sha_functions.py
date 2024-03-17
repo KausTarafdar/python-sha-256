@@ -8,7 +8,8 @@ Following are the sha_functions required during the SHA256 encoding process.
 """
 {*} Bit Rotation : Rotates the bits in the binary string. The w value determines how many times the bits are rotated
 """
-def rotr(w, initial):                   
+
+def rotr(w : str, initial : int) -> str:                   
     workingInitial = str(initial)
     l = []
     final = ""
@@ -21,14 +22,14 @@ def rotr(w, initial):
     l.reverse()
     for i in l:
         final += i
-    print(f"rotr{w} : ", final)
+    #print(f"rotr{w} : ", final)
     return final
 
 
 """
 {*} Bit Shift : The Bits are shifted and replaced with 0s. The w value determines how many times the bits are shifted
 """
-def shr(w, initial):                   
+def shr(w : str, initial : int) -> str:                   
     workingInitial = str(initial)
     l = []
     final = ""
@@ -45,14 +46,14 @@ def shr(w, initial):
             newList.append(l[i])
     for i in newList:
         final += i
-    print(f"shr{w} : ", final)
+    #print(f"shr{w} : ", final)
     return final
 
 
 """
 {*} XOR : Basic binary xor for 3 bits
 """
-def xor(arg1, *argv):                    
+def xor(arg1 : str, *argv : str) -> str:                    
     for arg in argv:
         wval1, wval2 = str(arg1), str(arg)
         if len(wval1) != len(wval2):
@@ -68,14 +69,14 @@ def xor(arg1, *argv):
             else:
                 xorSum += "1" 
         arg1 = xorSum
-    print("xor : ", xorSum)
+    #print("xor : ", xorSum)
     return xorSum
 
 
 """
 {*} Binary Sum : Basic binary addition function for 3 bits
 """
-def bitsum(arg1, *argv):                     
+def bitsum(arg1 : str, *argv : str) -> str:                     
     newarg = ""
     for arg in argv:
         l1, l2 = [], []
@@ -117,7 +118,7 @@ def bitsum(arg1, *argv):
             difference = abs(len(newarg) - 32)
             newarg = newarg[difference:len(newarg)]
         arg1 = newarg
-    print("binary sum : ", newarg)
+    #print("binary sum : ", newarg)
     return newarg
 
 """--------------------------------------------------------------------------------------------------------------------------------------"""
@@ -131,42 +132,42 @@ def bitsum(arg1, *argv):
 ----------------------------------------------------------------------------------------------------
 """
 
-def Lsigma0(x):
+def Lsigma0(x : str) -> str:
     rotr7 = rotr(7, x)
     rotr18 = rotr(18, x)
     shr3 = shr(3, x)
     value = xor(rotr7, rotr18, shr3)
-    print("σ0 : ", value)
+    #print("σ0 : ", value)
     return value
 
 
 
-def Lsigma1(x):
+def Lsigma1(x : str) -> str:
     rotr17 = rotr(17, x)
     rotr19 = rotr(19, x)
     shr10 = shr(10, x)
     value = xor(rotr17, rotr19, shr10)
-    print("σ1 : ", value)
+    #print("σ1 : ", value)
     return value
 
 
 
-def Usigma0(x):
+def Usigma0(x : str) -> str:
     rotr2 = rotr(2, x)
     rotr13 = rotr(13, x)
     rotr22 = rotr(22, x)
     value = xor(rotr2, rotr13, rotr22)
-    print("Σ0 : ", value)
+    #print("Σ0 : ", value)
     return value
 
 
 
-def Usigma1(x):
+def Usigma1(x : str) -> str:
     rotr6 = rotr(6, x)
     rotr11 = rotr(11, x)
     rotr25 = rotr(25, x)
     value = xor(rotr6, rotr11, rotr25)
-    print("Σ1 : ", value)
+    #print("Σ1 : ", value)
     return value
 
 """
@@ -181,14 +182,14 @@ Example :-
 0 0 1 0 => Answer
 """
 
-def choice(x, y, z):
+def choice(x : str, y : str, z : str) -> str:
     final = ''
     for i in range(len(x)):
         if x[i] == "1":
             final += y[i]
         else:
             final += z[i]
-    print("choice : ", final)
+    #print("choice : ", final)
     return final 
 
 """
@@ -202,7 +203,7 @@ Example :-
 ---------
 1 0 1 0 1 => Answer
 """
-def majority(x, y ,z):
+def majority(x : str, y : str,z : str) -> str:
     final = ''
     for i in range(len(y)):
         sum = 0
@@ -211,13 +212,13 @@ def majority(x, y ,z):
             final += "1"
         else: 
             final += "0"
-    print("majority : ", final)
+    #print("majority : ", final)
     return final
 
 """
 {*} Hexadecimal : The Binary bit streams are converted to hexadecimal
 """
-def hexa(value):
+def hex_string(value : str) -> str:
     value = int(value, 2)
     value = hex(value)
     value = value[2:len(value)]

@@ -10,48 +10,48 @@ The last 64 bits encode the length of message in the message block.
 scheduling.
 """
 
+import binascii
+from typing import List
 
-def message_binary(value):
-    str_value = str(value)
-    valueStr = ""
-    for i in str_value:
-        if i.isnumeric():
-            i = bin(ord(i))
-            valueStr += ("0" + i[2:len(i)])
-        else:
-            i = bin(ord(i))
-            valueStr += ("0" + i[2:len(i)])
-    print("Binary form of message :- \n", "\n", valueStr)
-    return valueStr
 
-def pad(value):
-    length = len(value)
-    len_binary = bin(length)
-    strBinary = str(len_binary)
-    strBinary = "0" + strBinary[2:len(len_binary)]
-    paddedValue = ""
-    if length < 512:
-        paddedValue = value + "1"
-        while len(paddedValue) < 448:
-            paddedValue += "0"
-        while len(strBinary) < 64:
-            strBinary = "0" + strBinary
-        paddedValue += strBinary
-    if length > 512:
-        multiple = (length//512) + 1
-        variablePadding = (512 * multiple) - 64
-        paddedValue = value + "1"
-        while len(paddedValue) < variablePadding:
-            paddedValue += "0"
-        while len(strBinary) < 64:
-            strBinary = "0" + strBinary
-        paddedValue += strBinary
-    print("Padding the value to multiple of 512 bytes : ", paddedValue)
-    return paddedValue
+def fileToBinary(input_file : str) -> str :
+    scale = 16
+    #Convert the file to hexadecimal string
+    hex_string = binascii.hexlify(input_file)
+    #Convert the hexadecimal string to a binary string
+    res = bin(int(hex_string, scale)).zfill(8)
 
-def blocks(value):
+    # Getting the actual hashing input string and lenght of string as binary
+    hashvalue = res[2:len(res)]
+    len_value = "{0:b}".format(len(hashvalue))
+
+    return hashvalue, len_value
+
+def input_padding(hashvalue : str, len_value : str) -> str :
+    #Checking is the file length can be assigned to 64 bit binary
+    if len(hashvalue) > 18446744073709551615:
+        print("File cannot be processed as the length of binary file is over 64 bit")
+        exit()
+
+    #padding the length to 64 bits
+    len_value = len_value.zfill(64)
+
+    #Calculating the next multiple of 512, the string length fits into
+    temp_hashvalue = hashvalue + len_value
+
+    #Padding hashvalue and concatenating length to the end
+    req_len = len(temp_hashvalue)
+    if (len(temp_hashvalue)%512):
+        req_len = len(temp_hashvalue) + (512 - len(temp_hashvalue) % 512)
+        hashvalue = hashvalue[::-1].zfill(req_len-64)[::-1]
+        hashvalue = hashvalue + len_value
+        return hashvalue
+    else:
+        hashvalue = temp_hashvalue
+        return hashvalue
+
+def chunkinator(value : str) -> List[str]:
     n = 512
     chunks = [value[i:i+n] for i in range(0, len(value), n)]
-    print("The different chunks are : \n", chunks)
     return chunks
 

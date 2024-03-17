@@ -222,6 +222,5 @@ def hex_string(value : str) -> str:
     value = int(value, 2)
     value = hex(value)
     value = value[2:len(value)]
-    print("hexadecimal value : ", value)
     return value
 

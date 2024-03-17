@@ -13,9 +13,11 @@ def py_SHA256(path : str) -> str :
 
     input_string = input_file.read()
 
-    output_file = open("output.txt", "w+")
+    output_file = open("./output.txt", "w+")
 
     output_file.write(f"File hashed = {ntpath.basename(path)}\n\n")
+
+    input_file.close()
 
     hashValue = input_string
 
@@ -80,14 +82,14 @@ def py_SHA256(path : str) -> str :
     hex_digest = ""
     for idx, value in enumerate(compressedValues):
         hex_val = hex_string(value)
-        if len(hex_string) != 8:
-            hex_val.zfill(8)
+        if len(hex_val) < 8:
+            hex_val = hex_val.zfill(8)
+        print(f"Hexadecimal Value => {hex_val}")
         output_file.write(f"H{idx} : {value} => {hex_val}\n")
         hex_digest += hex_val
     
     output_file.write(f"\nHexDigest or SHA265 encoded string :- {hex_digest}")
 
-    input_file.close()
     output_file.close()
 
     print("Your String has been Successfully Hashed")

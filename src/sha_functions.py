@@ -8,7 +8,6 @@ Following are the sha_functions required during the SHA256 encoding process.
 """
 {*} Bit Rotation : Rotates the bits in the binary string. The w value determines how many times the bits are rotated
 """
-
 def rotr(w : str, initial : int) -> str:                   
     workingInitial = str(initial)
     l = []
@@ -22,7 +21,6 @@ def rotr(w : str, initial : int) -> str:
     l.reverse()
     for i in l:
         final += i
-    #print(f"rotr{w} : ", final)
     return final
 
 
@@ -46,7 +44,6 @@ def shr(w : str, initial : int) -> str:
             newList.append(l[i])
     for i in newList:
         final += i
-    #print(f"shr{w} : ", final)
     return final
 
 
@@ -69,7 +66,6 @@ def xor(arg1 : str, *argv : str) -> str:
             else:
                 xorSum += "1" 
         arg1 = xorSum
-    #print("xor : ", xorSum)
     return xorSum
 
 
@@ -118,7 +114,6 @@ def bitsum(arg1 : str, *argv : str) -> str:
             difference = abs(len(newarg) - 32)
             newarg = newarg[difference:len(newarg)]
         arg1 = newarg
-    #print("binary sum : ", newarg)
     return newarg
 
 """--------------------------------------------------------------------------------------------------------------------------------------"""
@@ -137,7 +132,6 @@ def Lsigma0(x : str) -> str:
     rotr18 = rotr(18, x)
     shr3 = shr(3, x)
     value = xor(rotr7, rotr18, shr3)
-    #print("σ0 : ", value)
     return value
 
 
@@ -147,7 +141,6 @@ def Lsigma1(x : str) -> str:
     rotr19 = rotr(19, x)
     shr10 = shr(10, x)
     value = xor(rotr17, rotr19, shr10)
-    #print("σ1 : ", value)
     return value
 
 
@@ -157,9 +150,7 @@ def Usigma0(x : str) -> str:
     rotr13 = rotr(13, x)
     rotr22 = rotr(22, x)
     value = xor(rotr2, rotr13, rotr22)
-    #print("Σ0 : ", value)
     return value
-
 
 
 def Usigma1(x : str) -> str:
@@ -167,7 +158,6 @@ def Usigma1(x : str) -> str:
     rotr11 = rotr(11, x)
     rotr25 = rotr(25, x)
     value = xor(rotr6, rotr11, rotr25)
-    #print("Σ1 : ", value)
     return value
 
 """
@@ -181,7 +171,6 @@ Example :-
 -------
 0 0 1 0 => Answer
 """
-
 def choice(x : str, y : str, z : str) -> str:
     final = ''
     for i in range(len(x)):
@@ -189,7 +178,6 @@ def choice(x : str, y : str, z : str) -> str:
             final += y[i]
         else:
             final += z[i]
-    #print("choice : ", final)
     return final 
 
 """
@@ -212,7 +200,6 @@ def majority(x : str, y : str,z : str) -> str:
             final += "1"
         else: 
             final += "0"
-    #print("majority : ", final)
     return final
 
 """

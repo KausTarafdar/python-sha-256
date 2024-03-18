@@ -18,6 +18,7 @@ def msgSchedule(msgBlock : str) -> List[str]:
         chunks.append(nextChunk)
     return chunks
 
+
 def compression(schedule : List[str], a : str, b : str, c : str, d : str, e : str, f : str, g : str, h : str) -> List[str]:
 
     #working values

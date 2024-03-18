@@ -20,7 +20,7 @@ Clone the repo. Open the repo on the Terminal
   pip install -r requirements.txt
 ```
 
-Run the **main.py** file and the path of the file to be encoded (Incase of path recognition issues place the target file in the repo folder)
+Run the **main.py** file and the path of the file to be encoded (Incase of path recognition issues, place the target file in the repo folder)
 
 ```bash
   $ python src/main.py
@@ -28,4 +28,4 @@ Run the **main.py** file and the path of the file to be encoded (Incase of path 
       <Enter your path>
 ```
 
-After completion of hashing, the output will be generaated and stored in the **output.txt** file.
+After completion of hashing, the output will be generated and stored in the **output.txt** file.

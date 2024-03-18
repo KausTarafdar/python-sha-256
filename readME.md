@@ -15,6 +15,11 @@ Clone the repo. Open the repo on the Terminal
 ```bash
   cd python-sha-256
 ```
+**pip** install the requirements.txt in the \src
+```bash
+  pip install -r requirements.txt
+```
+
 Run the **main.py** file and the path of the file to be encoded (Incase of path recognition issues place the target file in the repo folder)
 
 ```bash
